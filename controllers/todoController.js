@@ -4,6 +4,7 @@
 const Todo = require('../models/todo')
 
 
+//get all tasks in the database
 const getAllTasks = async (req, res) => {
     try {
         const tasks = await Todo.find()
@@ -15,6 +16,7 @@ const getAllTasks = async (req, res) => {
     
 }
 
+//get a single task by id from the database
 const getTask = async (req, res) => {
     try {
         const id = req.params.id
@@ -29,6 +31,8 @@ const getTask = async (req, res) => {
     }
 }
 
+
+//Create a new task in database
 const createTask = async (req, res) => {
     if (req.body.name.length > 2) {
         try {
@@ -51,6 +55,8 @@ const createTask = async (req, res) => {
     
 }
 
+
+//update a task based on it's id
 const updateTask = async (req, res) => {
     try {
         const id = req.params.id
@@ -63,6 +69,7 @@ const updateTask = async (req, res) => {
     
 }
 
+//delete a task based on it's id
 const deleteTask = async (req, res) => {
     try {
         const id = req.params.id
