@@ -12,7 +12,8 @@ mongoose.connect(
     'mongodb://localhost:27017/todo', 
     {
         useNewUrlParser: true, 
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     }
 ).then(() => {
     console.log(`connected to mongoose`)

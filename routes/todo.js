@@ -3,7 +3,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAllTasks, getTask, createTask } = require('../controllers/todoController')
+const { getAllTasks, getTask, createTask, updateTask, deleteTask } = require('../controllers/todoController')
 
 
 router.route('/')
@@ -12,8 +12,8 @@ router.route('/')
 
 router.route('/:id')
     .get(getTask)
-    .put()
-    .delete()
+    .put(updateTask)
+    .delete(deleteTask)
 
 
 module.exports = router
