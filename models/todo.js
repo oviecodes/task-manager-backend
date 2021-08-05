@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 
-const todoSchema = new Schema({
+const todoSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -11,7 +11,7 @@ const todoSchema = new Schema({
         type: String,
         required: true
     },
-    tasks: {
+    todos: {
         type: Array,
         required: true
     }
@@ -20,3 +20,5 @@ const todoSchema = new Schema({
 })
 
 const todo = mongoose.model('todo', todoSchema)
+
+module.exports = todo

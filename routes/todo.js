@@ -3,15 +3,17 @@
 const express = require('express')
 const router = express.Router()
 
+const { getAllTasks, getTask, createTask } = require('../controllers/todoController')
+
 
 router.route('/')
-    .get()
-    .post()
+    .get(getAllTasks)
+    .post(createTask)
+
+router.route('/:id')
+    .get(getTask)
     .put()
     .delete()
 
-router.route('/:id')
-    .get()
-    .post()
-    .put()
-    .delete()
+
+module.exports = router
