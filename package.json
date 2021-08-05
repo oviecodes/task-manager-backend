@@ -1,0 +1,16 @@
+{
+  "name": "todobackend",
+  "version": "1.0.0",
+  "description": "the back-end of the angular to-do application built with Node",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app",
+    "start": "node app"
+  },
+  "author": "Godwin Alexander",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5"
+  }
+}
