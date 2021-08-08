@@ -3,7 +3,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const helmet = require('helmet')
-
+const morgan = require('morgan')
+const cors = require('cors')
 
 const todoRoute = require('./routes/todo')
 
@@ -28,7 +29,9 @@ mongoose.connect(
 
 
 //middleware
+app.use(cors())
 app.use(helmet())
+app.use(morgan('combined'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -36,6 +39,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/todos', todoRoute)
 
 
+//Error handler
+app.use((err, req, res, next) => {
+   res.status(err.status).json(err)
+})
 
 //listen on port 3000
 app.listen(port, () => {

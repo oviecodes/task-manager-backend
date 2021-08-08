@@ -10,8 +10,10 @@
   "author": "Godwin Alexander",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
-    "mongoose": "^5.13.5"
+    "mongoose": "^5.13.5",
+    "morgan": "^1.10.0"
   }
 }

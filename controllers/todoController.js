@@ -13,21 +13,17 @@ const getAllTasks = async (req, res) => {
         console.log(e)
         res.status(500).send('an error occurred')
     }
-    
+
 }
 
 //get a single task by id from the database
-const getTask = async (req, res) => {
+const getTask = async (req, res, next) => {
     try {
         const id = req.params.id
         const task = await Todo.findById(id)
-        if (!task) {
-            return res.status(404).json({ errMsg: 'Resource not found'})
-        }
         return res.status(200).json(task)
     } catch (e) {
-        console.log(e)
-        return res.status(500).send('an error occurred')
+        res.status(404).json({ errMsg: 'resource not found' })
     }
 }
 
@@ -41,18 +37,15 @@ const createTask = async (req, res) => {
                 todos: [],
                 done: false
             })
-            if(!newTask) {
-                return res.status(404).json({ errMsg: 'An error occurred' })
-            }
-            return res.status(201).json(newTask)
+            res.status(201).json(newTask)
         } catch (e) {
             console.log(e)
-            return res.status(500).send('an error occurred')
+            res.status(500).send('an error occurred')
         }
     } else {
-        return res.status(204).json({ errMsg: 'Name must contain 3 or more characters' })
+        res.status(404).json({ errMsg: 'Name must contain 3 or more characters' })
     }
-    
+
 }
 
 
@@ -66,20 +59,20 @@ const updateTask = async (req, res) => {
         console.log(e)
         return res.status(500).send('an error occurred')
     }
-    
 }
 
 //delete a task based on it's id
 const deleteTask = async (req, res) => {
     try {
         const id = req.params.id
-        const task = await Todo.findByIdAndDelete(id)
+        await Todo.findByIdAndDelete(id)
         res.status(200).json({ msg: 'Successfully deleted' })
     } catch (e) {
         console.log(e)
         return res.status(500).send('an error occurred')
     }
 }
+
 
 
 module.exports = {
@@ -89,4 +82,8 @@ module.exports = {
     updateTask,
     deleteTask
 }
+
+
+
+
 
