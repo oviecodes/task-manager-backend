@@ -7,7 +7,7 @@ const Todo = require('../models/todo')
 //get all tasks in the database
 const getAllTasks = async (req, res) => {
     try {
-        const tasks = await Todo.find()
+        const tasks = await Todo.find().sort({ createdAt: 'desc' }).exec()
         res.status(200).json(tasks)
     } catch (e) {
         console.log(e)
